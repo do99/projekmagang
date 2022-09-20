@@ -11,7 +11,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up() 
     {
         Schema::create('tb_m_client', function (Blueprint $table) {
             $table->increments('client_id');
@@ -19,6 +19,20 @@ return new class extends Migration
             $table->string('client_address', 100);
             $table->timestamps();
         });
+        $tb_project = \App\Models\Client::create([
+            'client_name' => 'NEC',
+            'client_address' => 'Jakarta'
+          ]);
+        $tb_project = \App\Models\Client::create([
+            'client_name' => 'TAM',
+            'client_address' => 'Jakarta'
+          ]);
+        $tb_project = \App\Models\Client::create([
+            'client_name' => 'TUA',
+            'client_address' => 'Bandung'
+          ]);
+
+
     }
 
     /**

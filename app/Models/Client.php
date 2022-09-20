@@ -9,4 +9,11 @@ class Client extends Model
 {
     protected $table = 'tb_m_client';
     protected $primarykey = 'client_id';
+
+    protected $fillable = [
+        'client_name',
+        'client_address',
+      ];
+    
+
 }

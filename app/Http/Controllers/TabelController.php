@@ -86,7 +86,7 @@ class TabelController extends Controller
     {
         $update = Projek::where('project_id', $request->id)->update($request->except('_method', '_token','id','submit'));
 
-        return redirect('/')->with('Success', 'Data telah di Update !');
+        return redirect('dashboard')->with('Success', 'Data telah di Update !');
     }
 
     /**
