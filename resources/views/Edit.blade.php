@@ -57,13 +57,13 @@
             </div>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="dashboard">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="create">
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">
                     <i class="bi bi-person-lines-fill"></i>
                     <span>Input Data</span></a>
             </li>
@@ -301,45 +301,49 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DATA TABLE</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">INPUT DATA</h6>
                         </div>
                         
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <div align="left">
-                                    <button type="button" name="create_record" id="create_record" class="btn btn-success mb-4"> <a class="text-decoration-none text-white " href="create"><i class="bi bi-person-plus"></i>  ADD</a></button>
-                                    <button type="button" name="create_record" id="create_record" class="btn btn-danger mb-4"> <i class="bi bi-trash"></i>  DELETE</button>
-                                </div>
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>Action</th>
-                                            <th>Project Name</th>
-                                            <th>Client</th>
-                                            <th>Project Start</th>
-                                            <th>Project End</th>
-                                            <th>Status</th> 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    @if($data->count())
-                                    @foreach ($data as $item)
-                                        <tr id="tr_{{$item->id}}">
-                                            <td width="30px"><input type="checkbox" class="sub_chk" data-id="{{$item->project_id}}"></td>
-                                            <td align="center"><a class="cursor-pointer text-decoration-none" href="{{url('edit',$item->project_id) }}">EDIT</a></td>
-                                            <td>{{$item->project_name}}</td>
-                                            <td>{{$item->dClient['client_name']}}</td>
-                                            <td>{{$item->project_start}}</td>
-                                            <td>{{$item->project_end}}</td>
-                                            <td>{{$item->project_status}}</td>
-                                        </tr>
-                                    @endforeach 
-                                    @endif
-                                    </tbody>
-                                </table>
-                            </div>
+                                <form action="create" method="post">
+                                    @csrf
+                                    <div class="mb-3">
+                                      <label for="projectName" class="form-label">Project Name</label>
+                                      <input type="text" class="form-control" name="projectName" id="projectName" >
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="client" class="form-label">Client</label>
+                                      <select name="client_id">
+                                        @foreach ($dataClient as $item)
+                                        <option value="{{ $item->client_id }}">{{ $item->client_name }}</option>
+                                        @endforeach
+                                      </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="projectStart" class="form-label">Project Start</label>
+                                        <input type="date" class="form-control" id="projectStart" name="projectStart">
+                                      </div>
+                                      <div class="mb-3">
+                                        <input type="date" class="form-control" id="projectEnd" name="projectEnd">
+                                      </div>
+                                      <div class="mb-3">
+                                       
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label">Status</label>
+                                        <select name="project_status" id="">
+                                            <option value="">-- All Status --</option>
+                                            <option value="OPEN">OPEN</option>
+                                            <option value="DOING">DOING</option>
+                                            <option value="DONE">DONE</option>
+                                        </select>
+                                      </div>
+                                    <div class="mb-3 form-check">
+                                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary float-end">Submit</button>
+                                  </form>
                         </div>
                     </div>
 

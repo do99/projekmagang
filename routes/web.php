@@ -23,8 +23,13 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::controller(TabelController::class)->group(function () {
     Route::get('/dashboard', 'index');
-    Route::get('/input', 'input');
+    Route::get('/create', 'tambah');
+    Route::post('/create', 'create');
     Route::get('/edit/{project_id}', 'edit');
     Route::put('edit/update/{project_id}', 'update');
 });
+// Route::get('/create', function () {
+//     return view('Create');
+// });
+// Route::resource('controller', TabelController::class);
 // Route::get('/', [TabelController::class, 'index']);
